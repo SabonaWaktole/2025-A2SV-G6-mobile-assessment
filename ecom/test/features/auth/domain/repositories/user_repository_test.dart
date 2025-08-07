@@ -17,7 +17,7 @@ void main() {
     mockUserRepository = MockUserRepository();
   });
 
-  const email = 'sabona@example.com';
+  const email = 'tola@example.com';
   const password = 'securePassword';
   const name = 'Sabona';
   const sampleToken = 'sampleToken';
