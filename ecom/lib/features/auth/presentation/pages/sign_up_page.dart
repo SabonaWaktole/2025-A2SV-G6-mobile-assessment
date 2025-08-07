@@ -18,12 +18,12 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void _onSignUpPressed() {
     context.read<AuthBloc>().add(
-          SignUpRequested(
-            name: nameController.text.trim(),
-            email: emailController.text.trim(),
-            password: passwordController.text.trim(),
-          ),
-        );
+      SignUpRequested(
+        name: nameController.text.trim(),
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      ),
+    );
   }
 
   @override
@@ -35,37 +35,35 @@ class _SignUpPageState extends State<SignUpPage> {
         child: BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is AuthLoading) {
-              // Show loading indicator or toast
+              // Optionally show loading UI
             } else if (state is AuthError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.message)));
             } else if (state is AuthAuthenticated) {
-              Navigator.pushReplacementNamed(context, '/home');
+              Navigator.pushReplacementNamed(
+                context,
+                '/home',
+                arguments: emailController.text.trim(),
+              );
             }
           },
           child: Column(
             children: [
               TextField(
                 controller: nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Full Name',
-                ),
+                decoration: const InputDecoration(labelText: 'Full Name'),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                ),
+                decoration: const InputDecoration(labelText: 'Email'),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                ),
+                decoration: const InputDecoration(labelText: 'Password'),
               ),
               const SizedBox(height: 24),
               ElevatedButton(
