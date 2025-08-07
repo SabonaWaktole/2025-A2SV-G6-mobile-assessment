@@ -19,6 +19,7 @@ dependencies:
   equatable: ^2.0.7
   flutter_bloc: ^9.1.1
   get_it: ^8.2.0
+  shared_preferences_android: ^2.4.10
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +27,8 @@ dev_dependencies:
 
 
   flutter_lints: ^5.0.0
+  mockito: ^5.4.0
+  build_runner: ^2.6.0
 
 
 flutter:
