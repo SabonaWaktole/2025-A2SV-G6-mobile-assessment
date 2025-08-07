@@ -28,22 +28,60 @@ class _SplashPageState extends State<SplashPage> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthAuthenticated) {
-          Navigator.pushReplacementNamed(context, '/home', arguments: state.user.email);
+          Navigator.pushReplacementNamed(
+            context,
+            '/home',
+            arguments: state.user.email,
+          );
         } else {
           Navigator.pushReplacementNamed(context, '/signin');
-        } 
+        }
       },
       child: Scaffold(
-        backgroundColor: AppColors.primary,
-        body: const Center(
-          child: Text(
-            'ecom',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset('assets/images/image.png', fit: BoxFit.cover),
+            // Color overlay with opacity
+            Container(
+              // ignore: deprecated_member_use
+              color: const Color.fromARGB(
+                255,
+                0,
+                38,
+                255,
+              ).withOpacity(0.8), // Adjust color & opacity here
             ),
-          ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                      30,
+                    ), // You can adjust the radius
+                    child: Image.asset(
+                      'assets/images/ecom_logo.png',
+                      width: 150,
+                      height: 80,
+
+                      fit: BoxFit.contain,
+
+                    ),
+                  ),
+                  const Text(
+                    'Ecommerce App',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
