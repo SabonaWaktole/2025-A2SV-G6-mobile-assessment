@@ -1,0 +1,46 @@
+test
+┣ core
+┃ ┣ constants
+┃ ┃ ┣ app_colors_test.dart
+┃ ┃ ┗ app_styles_test.dart
+┃ ┣ error
+┃ ┃ ┣ exceptions_test.dart
+┃ ┃ ┗ failure_test.dart
+┃ ┣ network
+┃ ┃ ┗ network_info_test.dart
+┃ ┣ usecases
+┃ ┃ ┗ usecase_test.dart
+┃ ┗ utils
+┃ ┃ ┗ token_storage_test.dart
+┣ features
+┃ ┗ auth
+┃ ┃ ┣ data
+┃ ┃ ┃ ┣ datasources
+┃ ┃ ┃ ┃ ┣ auth_local_data_source_test.dart
+┃ ┃ ┃ ┃ ┗ auth_remote_data_source_test.dart
+┃ ┃ ┃ ┣ models
+┃ ┃ ┃ ┃ ┗ user_model_test.dart
+┃ ┃ ┃ ┗ repositories
+┃ ┃ ┃ ┃ ┗ user_repository_impl_test.dart
+┃ ┃ ┣ domain
+┃ ┃ ┃ ┣ entities
+┃ ┃ ┃ ┃ ┗ user_test.dart
+┃ ┃ ┃ ┣ repositories
+┃ ┃ ┃ ┃ ┗ user_repository_test.dart (if you want to create mock interface tests)
+┃ ┃ ┃ ┗ usecases
+┃ ┃ ┃ ┃ ┣ login_test.dart
+┃ ┃ ┃ ┃ ┣ logout_test.dart
+┃ ┃ ┃ ┃ ┗ sign_up_test.dart
+┃ ┃ ┗ presentation
+┃ ┃ ┃ ┣ bloc
+┃ ┃ ┃ ┃ ┣ auth_bloc_test.dart
+┃ ┃ ┃ ┣ pages
+┃ ┃ ┃ ┃ ┣ home_page_test.dart
+┃ ┃ ┃ ┃ ┣ sign_in_page_test.dart
+┃ ┃ ┃ ┃ ┣ sign_up_page_test.dart
+┃ ┃ ┃ ┃ ┗ splash_page_test.dart
+┃ ┃ ┃ ┗ widgets
+┃ ┃ ┃ ┃ ┣ auth_button_test.dart
+┃ ┃ ┃ ┃ ┗ auth_text_field_test.dart
+┣ injection_container_test.dart
+┗ main_test.dart
