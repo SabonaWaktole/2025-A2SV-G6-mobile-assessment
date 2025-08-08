@@ -8,5 +8,6 @@ class AppColors {
   static const border = Color(0xFFE0E0E0); // Light border for input fields
   static const error = Color(0xFFFF3B30);
   static const button = Color(0xFF3F51F3);
+  static const fillcolor = Color.fromARGB(255, 248, 246, 246); // White text on buttons
 
 }

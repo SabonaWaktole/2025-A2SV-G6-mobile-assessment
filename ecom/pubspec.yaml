@@ -20,6 +20,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   get_it: ^8.2.0
   shared_preferences_android: ^2.4.10
+  google_fonts: 6.3.0
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ecom/core/constants/app_colors.dart';
 
 class AuthTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -16,7 +17,8 @@ class AuthTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 4.0,
-      shadowColor: Colors.black.withOpacity(0.2),
+      // ignore: deprecated_member_use
+      shadowColor: AppColors.textPrimary.withOpacity(0.2),
       borderRadius: BorderRadius.circular(8),
       child: TextField(
         controller: controller,
@@ -28,7 +30,7 @@ class AuthTextField extends StatelessWidget {
           focusedBorder: InputBorder.none,
           disabledBorder: InputBorder.none,
           filled: true,
-          fillColor: const Color.fromARGB(255, 255, 255, 255),
+          fillColor: AppColors.fillcolor,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 12,

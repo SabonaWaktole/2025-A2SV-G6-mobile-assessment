@@ -1,5 +1,7 @@
+import 'package:ecom/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../widgets/auth_text_field.dart';
 import '../widgets/auth_button.dart';
 import '../bloc/auth_bloc.dart';
@@ -31,7 +33,8 @@ class _SignInPageState extends State<SignInPage> {
   @override
 Widget build(BuildContext context) {
   return Scaffold(
-    body: BlocListener<AuthBloc, AuthState>(
+    backgroundColor: AppColors.background,
+      body: BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
           debugPrint('⏳ Logging in...');
@@ -50,11 +53,11 @@ Widget build(BuildContext context) {
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 60),
+                const SizedBox(height: 100),
 
                 // ✅ Logo
                 Container(
@@ -63,11 +66,11 @@ Widget build(BuildContext context) {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.background,
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black12,
+                        color: AppColors.textPrimary,
                         blurRadius: 6,
                         offset: Offset(0, 3),
                       ),
@@ -78,13 +81,13 @@ Widget build(BuildContext context) {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: AppColors.primary,
                       letterSpacing: 1.2,
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 40),
+                const SizedBox(height: 60),
 
                 // Header
                 const Align(
@@ -94,14 +97,23 @@ Widget build(BuildContext context) {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black,
+                      color: AppColors.textPrimary,
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 40),
 
-                const Text("email"),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'email',
+                    style: GoogleFonts.robotoSlab(
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
+
 
                 // Email Field
                 AuthTextField(
@@ -111,7 +123,16 @@ Widget build(BuildContext context) {
 
                 const SizedBox(height: 20),
 
-                const Text("password"),
+                
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'password',
+                    style: GoogleFonts.robotoSlab(
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
 
                 // Password Field
                 AuthTextField(
@@ -120,7 +141,7 @@ Widget build(BuildContext context) {
                   obscureText: true,
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
 
                 // Sign In Button
                 SizedBox(
@@ -131,7 +152,7 @@ Widget build(BuildContext context) {
                   ),
                 ),
 
-                const SizedBox(height: 200),
+                const SizedBox(height: 175),
 
                 // Sign Up Text
                 Row(
@@ -145,7 +166,7 @@ Widget build(BuildContext context) {
                       child: const Text(
                         "SIGN UP",
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: AppColors.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
