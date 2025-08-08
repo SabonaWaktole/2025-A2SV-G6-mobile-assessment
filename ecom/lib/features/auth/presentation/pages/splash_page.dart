@@ -45,12 +45,7 @@ class _SplashPageState extends State<SplashPage> {
             // Color overlay with opacity
             Container(
               // ignore: deprecated_member_use
-              color: const Color.fromARGB(
-                255,
-                0,
-                38,
-                255,
-              ).withOpacity(0.8), // Adjust color & opacity here
+              color: AppColors.button.withOpacity(0.8), // Adjust color & opacity here
             ),
             Center(
               child: Column(
