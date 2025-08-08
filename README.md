@@ -74,30 +74,9 @@ Implements **Clean Architecture**, **BLoC state management**, and a **beautiful 
 
 ### 3️⃣ Logout
 
-* Sends logout request to `/auth/logout`.
 * Clears stored token and returns to login screen.
 
 ---
-
-## 🔌 API Integration
-
-Example API call (Dio example):
-
-```dart
-final response = await dio.post(
-  '$baseUrl/auth/login',
-  data: {
-    'email': email,
-    'password': password,
-  },
-);
-
-if (response.statusCode == 200) {
-  final token = response.data['token'];
-  await secureStorage.write(key: 'auth_token', value: token);
-}
-```
-
 ---
 
 ## 🧭 Navigation Flow
