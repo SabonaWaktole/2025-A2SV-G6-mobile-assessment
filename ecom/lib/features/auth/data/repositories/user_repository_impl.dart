@@ -39,18 +39,13 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, void>> logout() async {
-    try {
-      final token = await localDataSource.getCachedToken();
-      if (token != null) {
-        await remoteDataSource.logout(token);
-        await localDataSource.clearToken();
-        return const Right(null);
-      } else {
-        return Left(UnauthorizedFailure("No token found"));
-      }
-    } catch (e) {
-      return Left(ServerFailure("Logout failed"));
-    }
+Future<Either<Failure, void>> logout() async {
+  try {
+    await localDataSource.clearToken();
+    return const Right(null);
+  } catch (e) {
+    return Left(ServerFailure("Logout failed: $e"));
   }
+}
+
 }
