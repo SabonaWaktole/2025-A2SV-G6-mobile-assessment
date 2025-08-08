@@ -133,6 +133,11 @@ if (response.statusCode == 200) {
 ```bash
 flutter run lib/main.dart
 ```
+## Pages 
+![Screenshots](https://github.com/SabonaWaktole/2025-A2SV-G6-mobile-assessment/blob/task22/ecom/assets/Screenshot%20from%202025-08-08%2023-08-56.png)
+![Screenshots](https://github.com/SabonaWaktole/2025-A2SV-G6-mobile-assessment/blob/task22/ecom/assets/Screenshot%20from%202025-08-08%2023-09-15.png)
+![Screenshots](https://github.com/SabonaWaktole/2025-A2SV-G6-mobile-assessment/blob/task22/ecom/assets/Screenshot%20from%202025-08-08%2023-09-24.png)
+
 
 ---
 
