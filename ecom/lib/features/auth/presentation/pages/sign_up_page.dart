@@ -205,7 +205,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             TextSpan(
                               text: "SIGN IN",
-                              style: const TextStyle(color: AppColors.primary),
+                              style: GoogleFonts.ptSans(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: AppColors.primary,
+                              ), //const TextStyle(color: AppColors.primary),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   Navigator.pushNamed(context, '/signin');
