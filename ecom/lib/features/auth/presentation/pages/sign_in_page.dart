@@ -7,6 +7,14 @@ import '../widgets/auth_button.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart'; // Make sure you import this
+import 'package:get_it/get_it.dart';
+
+import '../../../chat/presentation/bloc/chat_bloc/chat_bloc.dart';
+import '../../../chat/presentation/bloc/chat_bloc/chat_event.dart';
+import '../../../chat/presentation/pages/chat_list_page.dart';
+
+final sl = GetIt.instance;
+
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -39,12 +47,17 @@ class _SignInPageState extends State<SignInPage> {
           if (state is AuthLoading) {
             debugPrint('⏳ Logging in...');
           } else if (state is AuthAuthenticated) {
-            Navigator.pushReplacementNamed(
-              context,
-              '/home',
-              arguments: state.user.email,
-            );
-          } else if (state is AuthError) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (_) => BlocProvider<ChatBloc>(
+        create: (_) => sl<ChatBloc>()..add(LoadChats()),
+        child: ChatListPage(currentUserId: state.user.id),
+      ),
+    ),
+  );
+}
+ else if (state is AuthError) {
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text(state.message)));

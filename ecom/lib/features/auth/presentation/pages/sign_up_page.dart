@@ -9,6 +9,14 @@ import '../bloc/auth_state.dart';
 import '../widgets/auth_text_field.dart';
 import '../widgets/auth_button.dart';
 
+// Importing GetIt service locator and Chat-related classes
+import 'package:get_it/get_it.dart';
+import '../../../chat/presentation/bloc/chat_bloc/chat_bloc.dart';
+import '../../../chat/presentation/bloc/chat_bloc/chat_event.dart';
+import '../../../chat/presentation/pages/chat_list_page.dart';
+
+final sl = GetIt.instance;
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -33,6 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
+    // Dispatch the sign-up event to AuthBloc
     context.read<AuthBloc>().add(
       SignUpRequested(
         name: nameController.text.trim(),
@@ -52,28 +61,31 @@ class _SignUpPageState extends State<SignUpPage> {
           child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is AuthLoading) {
-                // Show loading if needed
+                debugPrint('⏳ Signing up...');
               } else if (state is AuthError) {
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(SnackBar(content: Text(state.message)));
               } else if (state is AuthAuthenticated) {
-                Navigator.pushReplacementNamed(
+                // ✅ After successful sign-up, route exactly like sign-in
+                Navigator.pushReplacement(
                   context,
-                  '/home',
-                  arguments: emailController.text.trim(),
+                  MaterialPageRoute(
+                    builder: (_) => BlocProvider<ChatBloc>(
+                      create: (_) => sl<ChatBloc>()..add(LoadChats()),
+                      child: ChatListPage(currentUserId: state.user.id),
+                    ),
+                  ),
                 );
               }
             },
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                ), // 👈 space from left & right
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Top Row
+                    // Top row with back arrow and logo
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -94,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(height: 24),
 
-                    // Fields
+                    // Name field
                     Text(
                       "Name",
                       style: GoogleFonts.ptSans(fontWeight: FontWeight.w300),
@@ -106,6 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
 
                     const SizedBox(height: 12),
+                    // Email field
                     Text(
                       "Email",
                       style: GoogleFonts.ptSans(fontWeight: FontWeight.w300),
@@ -117,6 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
 
                     const SizedBox(height: 12),
+                    // Password field
                     Text(
                       "Password",
                       style: GoogleFonts.ptSans(fontWeight: FontWeight.w300),
@@ -129,6 +143,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
 
                     const SizedBox(height: 12),
+                    // Confirm password field
                     Text(
                       "Confirm password",
                       style: GoogleFonts.ptSans(fontWeight: FontWeight.w300),
@@ -141,6 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
 
                     const SizedBox(height: 16),
+                    // Terms & policy checkbox
                     Row(
                       children: [
                         Checkbox(
@@ -166,7 +182,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      // Open terms
+                                      // TODO: Implement terms page navigation
                                     },
                                 ),
                                 const TextSpan(text: " & "),
@@ -177,7 +193,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      // Open policy
+                                      // TODO: Implement policy page navigation
                                     },
                                 ),
                               ],
@@ -188,9 +204,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
 
                     const SizedBox(height: 12),
-                    AuthButton(onPressed: _onSignUpPressed, text: 'SIGN UP'),
+                    // Sign up button
+                    AuthButton(
+                      onPressed: _onSignUpPressed,
+                      text: 'SIGN UP',
+                    ),
 
                     const SizedBox(height: 150),
+                    // Link to sign in page
                     Center(
                       child: RichText(
                         text: TextSpan(
@@ -209,7 +230,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                                 color: AppColors.primary,
-                              ), //const TextStyle(color: AppColors.primary),
+                              ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   Navigator.pushNamed(context, '/signin');

@@ -1,3 +1,5 @@
+import 'package:ecom/features/chat/presentation/bloc/chat_bloc/chat_bloc.dart';
+import 'package:ecom/features/chat/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecom/injection_container.dart' as di;
@@ -20,13 +22,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthBloc>(
-      create: (_) => di.sl<AuthBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (_) => di.sl<AuthBloc>(),
+        ),
+        BlocProvider<ChatBloc>(
+          create: (_) => di.sl<ChatBloc>(),  // Inject ChatBloc
+        ),
+        BlocProvider<UserBloc>(
+          create: (_) => di.sl<UserBloc>(),  // Inject UserBloc
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Ecommerce App',
         theme: ThemeData(primarySwatch: Colors.blue),
-        initialRoute: '/splash', // 👈 Show splash only on app launch
+        initialRoute: '/splash', 
         routes: {
           '/': (context) => const SignInPage(),
           '/signin': (context) => const SignInPage(),
