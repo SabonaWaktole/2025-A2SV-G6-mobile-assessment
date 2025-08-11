@@ -40,7 +40,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthError(message));
       },
       (user) {
-        debugPrint("✅ Login success: ${user.email}");
         emit(AuthAuthenticated(user));
       },
     );

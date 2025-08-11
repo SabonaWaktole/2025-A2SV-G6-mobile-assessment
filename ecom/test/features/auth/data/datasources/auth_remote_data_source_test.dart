@@ -18,8 +18,8 @@ void main() {
   const baseUrl = AuthRemoteDataSourceImpl.baseUrl;
 
   const tName = 'Sabona';
-  const tEmail = 'sabona@example.com';
-  const tPassword = 'password123';
+  const tEmail = 'whoareyou@gmail.com';
+  const tPassword = 'whoareyou';
   const tToken = 'abc123';
 
   const tUserModel = UserModel(
@@ -37,7 +37,6 @@ void main() {
   group('login', () {
     final responseJson = jsonEncode({
       'id': '1',
-      'name': tName,
       'email': tEmail,
       'token': tToken,
     });
